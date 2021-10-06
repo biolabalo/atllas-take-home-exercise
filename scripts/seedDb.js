@@ -1,4 +1,4 @@
-const { Agent } = require('../server/model')
+const { Agent, Review } = require('../server/model')
 
 
 /* NOTE: THIS WILL DROP THE CURRENT DATABASE */
@@ -7,6 +7,7 @@ seed();
 async function seed() {
   /* Create the table for the agents */
   await Agent.sync({ force: true })
+  await Review.sync({ force: true })
 
   /* Insert the data */
   await Promise.all([

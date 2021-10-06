@@ -1,11 +1,31 @@
 import type { FC } from "react";
 import { IAgent } from "../../types/Agent";
-
-import './Agent.css'
+import { useHistory } from 'react-router-dom';
+import axios from "axios";
+import './CSS/Agent.css'
 
 const Agent: FC<{ agent: IAgent }> = ({ agent }) => {
+  const history = useHistory();
+  const sumbitReview = async () => {
+    const review = prompt(`Please enter your review for ${agent.firstName} ${agent.lastName}`);
+    if(!review) return alert("no review was inputed");
+
+    try {
+     await axios.post(`http://localhost:3001/agent/${agent.id}`, {review});
+     return alert("Review posted")
+    }catch(err){
+      return alert("Failed to post review")
+    }
+  }
   return (
-    <div className="container">
+    <div style={{
+      display: 'inline-grid'
+    }}>
+         <button className="create-review-btn" onClick={sumbitReview}>ADD REVIEW</button>
+    <div 
+    className="container pointer"
+    onClick={() => history.push(`agent/${agent.id}`)}
+    >
       <header>
         <div className="avatar-holder">
           <img src={agent.photoUrl} className="avatar" alt={agent.firstName} />
@@ -23,6 +43,9 @@ const Agent: FC<{ agent: IAgent }> = ({ agent }) => {
           </div>
         </div>
       </footer>
+
+    </div>
+  
     </div>
   );
 };

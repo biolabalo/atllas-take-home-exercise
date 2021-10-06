@@ -1,0 +1,28 @@
+.agents {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px
+}
+
+.form-cr input {
+display: block;  
+padding: 5px;
+margin-bottom: 10px
+}
+
+.mt-3{
+  margin-top: 10px
+}
+
+.rap {
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+.pointer{
+  cursor: pointer;
+}
+
+.each-agent-page{
+  padding:20px
+}
